@@ -1,6 +1,6 @@
 package org.iakimova.robot.domain.model;
 
-import org.iakimova.robot.domain.exсeption.DomainException;
+import org.iakimova.robot.domain.exception.DomainException;
 
 public enum Instruction {
     L,

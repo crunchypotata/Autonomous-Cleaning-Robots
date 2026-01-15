@@ -1,4 +1,4 @@
-package org.iakimova.robot.domain.exсeption;
+package org.iakimova.robot.domain.exception;
 
 public class DomainException extends RuntimeException {
     public DomainException(String message) {
