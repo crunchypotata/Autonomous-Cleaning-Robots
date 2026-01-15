@@ -1,4 +1,4 @@
-package org.iakimova.robot;
+package org.iakimova.robot.infrastructure.adapter.console;
 
 public class Main {
     public static void main(String[] args) {
