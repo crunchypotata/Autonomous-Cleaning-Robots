@@ -4,32 +4,38 @@
 
 ## Overview
 
-This project is a Java-based solution for controlling autonomous cleaning robots. The application manages robots' movement on a rectangular grid based on sequential instructions .
+This project is a Java-based navigation system for autonomous cleaning robots operating within a defined rectangular grid. The solution focuses on reliability, strict boundary control, and a clear separation of concerns.
 
-## Technical Decisions
-### Rich Domain Model
+## Architecture & Design
 
-I implemented a **Rich Domain Model** to ensure that business logic is encapsulated directly within domain objects (Robot, Orientation, Coordinate). <br>
+The application is built using **Clean Architecture** and **Hexagonal (Ports & Adapters)** principles to ensure the core logic remains independent of external interfaces.
 
-**Benefits of this approach:**
+### Key Architectural Decisions:
 
-- **Encapsulation:** Logic for movement and rotation is placed where the data lives, preventing "Anemic Domain Model" issues
-- **Consistency:** Domain rules (for example, not moving out of bounds) are enforced by the objects themselves, making the system less error-prone
-- **Maintainability:** The code is easier to reason about and extend without breaking existing behavior
+- **Hexagonal Architecture:** Decouples core logic from infrastructure. The domain remains pure, while the application layer orchestrates use cases.
+- **Rich Domain Model (DDD):** Business rules and validations are encapsulated within domain entities to ensure state consistency.
+- **TDD Approach:** Developed with a test-first mindset, resulting in high coverage and a reliable, verifiable codebase.
+- **SOLID:** Adheres to clean code standards, specifically leveraging Dependency Inversion for flexible adapter management.
+## Assumptions & Logic
 
-### Architecture
+- **Boundary Safety:** To protect the hardware, the robot will not execute a movement command if it leads outside the grid. In such cases, a DomainException is raised, and the current command sequence is terminated.
+- **Sequential Processing:** Each robot finishes its entire instruction set before the user is prompted to deploy a new one.
+- **Collision Management:** The current version focuses on single-robot navigation safety. Multi-robot collision avoidance is identified as a candidate for future development.
 
-The project follows a **Hexagonal Architecture (Ports & Adapters)** to separate the core logic from external dependencies:
+## Navigation Commands
+The robot processes a sequence of instructions. Any invalid characters or movements that would result in a boundary violation are caught and reported.
 
-- **Domain**: Pure Java logic, independent of any frameworks
-- **Application**: Contains use cases and defines Input/Output ports
-- **Infrastructure** : Implements adapters for console I/O.
+- L: Rotate 90° Left
+- R: Rotate 90° Right
+- M: Move forward one point in the current orientation
 
-## Assumptions
+**Note: Commands are case-insensitive.**
 
-- **Grid Boundaries:** If a robot receives a move command that would take it outside the grid, it ignores that specific movement command to prevent damage (or throws a domain exception, depending on your final choice).
-- **Input Format:** Input follows the exact specification provided in the challenge
-- **Sequential Execution:** Each robot completes its entire instruction set before the next one starts
+## Technical Stack
+
+- **Java 23**: Core SDK
+- **JUnit 5**: unit and integration testing
+- **Gradle 8.x**: for build management
 
 ## How to run
 
@@ -48,8 +54,6 @@ The project follows a **Hexagonal Architecture (Ports & Adapters)** to separate 
    ``` bash 
    ./gradlew test
    ```
-## Technologies
-
-- **Java 23**: no framework
-- **JUnit 5**: unit and integration testing
-- **Gradle**: for build management
+### Future Improvements
+- **Stateful Grid:** Multi-robot coordination.
+- **Obstacle Mapping:** Support for non-passable cells

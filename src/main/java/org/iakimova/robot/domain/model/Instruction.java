@@ -1,7 +1,5 @@
 package org.iakimova.robot.domain.model;
-
 import org.iakimova.robot.domain.exception.DomainException;
-
 import java.util.List;
 
 public enum Instruction {
