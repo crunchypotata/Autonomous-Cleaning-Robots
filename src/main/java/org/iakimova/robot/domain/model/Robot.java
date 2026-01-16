@@ -23,6 +23,8 @@ public class Robot {
 
         if(grid.isWithinBounds(nextCoordinate)) {
             this.coordinate = nextCoordinate;
+        } else {
+            throw new DomainException("Movement denied: coordinate " + nextCoordinate.x() + " " + nextCoordinate.y() + " is outside the grid.");
         }
     }
 

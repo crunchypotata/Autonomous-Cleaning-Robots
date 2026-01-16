@@ -43,14 +43,17 @@ public class RobotTest {
 
     @Test
     void moveIncorrect() {
-        Grid grid = new Grid(5,5);
-        Coordinate coordinate = new Coordinate(5,5);
+        Grid grid = new Grid(5, 5);
+        Coordinate coordinate = new Coordinate(5, 5);
         Orientation orientation = Orientation.NORTH;
 
         Robot robot = new Robot(grid, coordinate, orientation);
 
-        robot.move();
-        assertEquals(new Coordinate(5,5 ), robot.getCoordinate());
+        assertThrows(DomainException.class, () -> {
+            robot.move();
+        });
+
+        assertEquals(new Coordinate(5, 5), robot.getCoordinate());
     }
 
     @Test
