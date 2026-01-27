@@ -1,6 +1,7 @@
 package org.iakimova.robot.domain.model;
 
 import org.iakimova.robot.domain.exception.DomainException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,6 +58,19 @@ public class RobotTest {
     }
 
     @Test
+    @DisplayName("Backward movement")
+    void backwardMoveTest() {
+        Grid grid = new Grid(5, 5);
+        Coordinate coordinate = new Coordinate(1, 1);
+
+        Orientation start = Orientation.NORTH;
+        Robot robot = new Robot(grid, coordinate, start);
+        robot.backwardMove();
+
+        assertEquals(new Coordinate(1, 0), robot.getCoordinate());
+    }
+
+    @Test
     void turnLeftCorrect() {
         Grid grid = new Grid(5,5);
         Robot robot = new Robot(grid, new Coordinate(1,1), Orientation.NORTH);
@@ -73,4 +87,5 @@ public class RobotTest {
         robot.turnRight();
         assertEquals(Orientation.EAST, robot.getOrientation());
     }
+
 }

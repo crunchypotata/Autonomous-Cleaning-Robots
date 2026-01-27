@@ -28,6 +28,17 @@ public class Robot {
         }
     }
 
+    public void backwardMove() {
+        Coordinate nextCoordinate = this.coordinate.add(orientation.getStepXOpposite(), orientation.getStepYOpposite());
+
+        if(grid.isWithinBounds(nextCoordinate)) {
+            this.coordinate = nextCoordinate;
+        } else {
+            throw new DomainException("Movement denied: coordinate " + nextCoordinate.x() + " " + nextCoordinate.y() + " is outside the grid.");
+        }
+
+    }
+
     public void turnLeft() {
         this.orientation = this.orientation.turnLeft();
     }
