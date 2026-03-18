@@ -21,7 +21,7 @@ public class Robot {
     public void move() {
         Coordinate nextCoordinate = this.coordinate.add(orientation.getStepX(), orientation.getStepY());
 
-        if(grid.isWithinBounds(nextCoordinate)) {
+        if(grid.isAvailable(nextCoordinate)) {
             this.coordinate = nextCoordinate;
         } else {
             throw new DomainException("Movement denied: coordinate " + nextCoordinate.x() + " " + nextCoordinate.y() + " is outside the grid.");
