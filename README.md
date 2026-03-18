@@ -1,7 +1,5 @@
 # Autonomous Cleaning Robot
 
-### **Author:** Aleksandra Iakimova
-
 ## Overview
 
 This project is a Java-based navigation system for autonomous cleaning robots operating within a defined rectangular grid. The solution focuses on reliability, strict boundary control, and a clear separation of concerns.
@@ -56,4 +54,4 @@ The robot processes a sequence of instructions. Any invalid characters or moveme
    ```
 ### Future Improvements
 - **Stateful Grid:** Multi-robot coordination.
-- **Obstacle Mapping:** Support for non-passable cells
+- **Obstacle Mapping:** Support for non-passable cells ✅ - added
