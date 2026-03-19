@@ -66,4 +66,9 @@ public enum Orientation {
         int nextOrdinal = (this.ordinal() + 3) % values().length;
         return values()[nextOrdinal];
     }
+
+    public Orientation turnOpposite() {
+        int nextOrdinal = (this.ordinal()+2) % values().length;
+        return values()[nextOrdinal];
+    }
 }

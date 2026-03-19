@@ -5,13 +5,15 @@ import java.util.List;
 public enum Instruction {
     L,
     R,
-    M;
+    M,
+    B;
 
     public static Instruction fromChar(char code) {
         return switch (Character.toUpperCase(code)) {
             case 'L' -> L;
             case 'R' -> R;
             case 'M' -> M;
+            case 'B' -> B;
             default -> throw new DomainException("Unknown instruction: " + code);
         };
     }
