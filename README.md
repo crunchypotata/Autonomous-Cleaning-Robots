@@ -53,5 +53,5 @@ The robot processes a sequence of instructions. Any invalid characters or moveme
    ./gradlew test
    ```
 ### Future Improvements
-- **Stateful Grid:** Multi-robot coordination.
+- **Stateful Grid:** Multi-robot coordination ✅ - added
 - **Obstacle Mapping:** Support for non-passable cells ✅ - added
