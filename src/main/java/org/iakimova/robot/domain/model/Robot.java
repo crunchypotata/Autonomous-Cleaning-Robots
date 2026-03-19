@@ -47,6 +47,10 @@ public class Robot {
         this.orientation = this.orientation.turnRight();
     }
 
+    public void turnOpposite() {
+        this.orientation = this.orientation.turnOpposite();
+    }
+
     public Coordinate getCoordinate() {
         return coordinate;
     }

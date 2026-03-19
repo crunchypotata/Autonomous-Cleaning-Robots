@@ -19,7 +19,12 @@ public class Grid{
     }
 
     public boolean isAvailable(Coordinate coordinate) {
-        return isWithinBounds(coordinate) && !obstacles.contains(coordinate);
+        return isWithinBounds(coordinate) && !obstacles.contains(coordinate) && !!isHereRobot(coordinate);
+    }
+
+    public boolean isHereRobot(Coordinate coordinate) {
+        return robots.stream()
+                .anyMatch(r -> r.getCoordinate().equals(coordinate));
     }
 
     public boolean isWithinBounds(Coordinate coordinate) {

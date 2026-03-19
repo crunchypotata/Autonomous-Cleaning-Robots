@@ -88,5 +88,28 @@ public class RobotTest {
         assertEquals(Orientation.EAST, robot.getOrientation());
     }
 
+    @Test
+    @DisplayName("Should throw exception when second robot lands on the first one")
+    void twoRobotsCollision() {
+        Grid grid = new Grid(5, 5);
+        Coordinate sharedCoord = new Coordinate(1,2);
+
+        Robot firstRobot = new Robot (grid, sharedCoord, Orientation.NORTH);
+
+        assertThrows(DomainException.class, () -> {
+            new Robot(grid, sharedCoord, Orientation.SOUTH);
+        });
+    }
+
+    @Test
+    @DisplayName("Robot cannot move into a cell occupied by another robot")
+    void collisionMovementTest() {
+        Grid grid = new Grid(5, 5);
+
+        Robot stationaryRobot = new Robot(grid, new Coordinate(1, 2), Orientation.NORTH);
+        Robot movingRobot = new Robot(grid, new Coordinate(1, 1), Orientation.NORTH);
+
+        assertThrows(DomainException.class, () -> movingRobot.move());
+    }
 
 }

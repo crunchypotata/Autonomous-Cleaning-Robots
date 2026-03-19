@@ -20,6 +20,7 @@ public class VacuumCleanerService {
                 case L -> robot.turnLeft();
                 case R -> robot.turnRight();
                 case M -> robot.move();
+                case B -> robot.backwardMove();
             }
         }
     }
